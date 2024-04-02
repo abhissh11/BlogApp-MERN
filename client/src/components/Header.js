@@ -1,27 +1,77 @@
-import React from "react";
-import { Link } from "react-router-dom";
-
+import React, { useState } from "react";
+import {
+  AppBar,
+  Box,
+  Button,
+  Tab,
+  Tabs,
+  Toolbar,
+  Typography,
+} from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 function Header() {
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+
+  const [value, setvalue] = useState();
+  const navigate = useNavigate();
   return (
-    <div className="m-2 p-3 flex justify-between shadow-lg">
-      <Link to="/">
-        <div className="text-xl font-bold ">
-          MERN <span className="text-blue-600">Blog</span>
-        </div>
-      </Link>
-      <div className="flex gap-5 mx-9">
-        <Link to="/sign-up">
-          <button className="text-lg font-semibold text-white px-5 py-2 rounded-full bg-red-500">
-            Sign Up
-          </button>
-        </Link>
-        <Link to="/bookmarks">
-          <button className="text-lg font-semibold text-white px-5 py-2 rounded-full bg-green-500">
-            Bookmarks
-          </button>
-        </Link>
-      </div>
-    </div>
+    <AppBar
+      sx={{
+        background:
+          "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(105,9,121,1) 35%, rgba(255,0,168,1) 100%)",
+        position: "sticky",
+      }}
+    >
+      <Toolbar>
+        <Typography variant="h4">BlogApp</Typography>
+        {isLoggedIn && (
+          <Box display="flex" marginLeft="auto" marginRight="auto">
+            <Tabs
+              textColor="inherit"
+              value={value}
+              onChange={(e, val) => {
+                setvalue(val);
+              }}
+            >
+              <Tab onClick={() => navigate("/blogs")} label="All Blogs " />
+
+              <Tab onClick={() => navigate("/myblogs")} label="My Blogs " />
+            </Tabs>
+          </Box>
+        )}
+
+        <Box display="flex" marginLeft="auto">
+          {!isLoggedIn && (
+            <>
+              <Link to="/login">
+                <Button
+                  variant="contained"
+                  sx={{ margin: 1, borderRadius: 10 }}
+                >
+                  Login
+                </Button>
+              </Link>
+              <Link to="/login">
+                <Button
+                  variant="contained"
+                  sx={{ margin: 1, borderRadius: 10 }}
+                >
+                  Sign Up
+                </Button>
+              </Link>
+            </>
+          )}
+          {isLoggedIn && (
+            <Link to="">
+              <Button variant="contained" sx={{ margin: 1, borderRadius: 10 }}>
+                Log Out
+              </Button>
+            </Link>
+          )}
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 }
 

@@ -1,18 +1,31 @@
 import React from "react";
-import HomePage from "./components/HomePage";
-import { Routes, Route } from "react-router-dom";
-import SignUp from "./components/SignUp";
-import SignIn from "./components/SignIn";
-import Bookmarks from "./components/Bookmarks";
+import Header from "./components/Header";
+import { Route, Routes } from "react-router-dom";
+import Auth from "./components/Auth";
+import Blogs from "./components/Blogs";
+import UserBlogs from "./components/UserBlogs";
+import BlogDetails from "./components/BlogDetails";
+import AddBlog from "./components/AddBlog";
+import { useSelector } from "react-redux";
 
 function App() {
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  console.log(isLoggedIn);
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/sign-in" element={<SignIn />} />
-      <Route path="/sign-up" element={<SignUp />} />
-      <Route path="/bookmarks" element={<Bookmarks />} />
-    </Routes>
+    <>
+      <header>
+        <Header />
+      </header>
+      <main>
+        <Routes>
+          <Route path="/login" element={<Auth />} />
+          <Route path="/" element={<Blogs />} />
+          <Route path="/blogs/add" element={<AddBlog />} />
+          <Route path="/myblogs" element={<UserBlogs />} />
+          <Route path="/blogs/:id" element={<BlogDetails />} />
+        </Routes>
+      </main>
+    </>
   );
 }
 
