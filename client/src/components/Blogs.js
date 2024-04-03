@@ -29,7 +29,6 @@ function Blogs() {
             key={blog._id}
           />
         ))}
-      <BlogCard />
     </div>
   );
 }

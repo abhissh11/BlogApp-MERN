@@ -28,7 +28,7 @@ function BlogCard({ title, description, imgURL, userName }) {
             </Avatar>
           }
           title={title}
-          subheader="September 14, 2016"
+          subheader=""
         />
         <CardMedia
           component="img"
@@ -38,7 +38,7 @@ function BlogCard({ title, description, imgURL, userName }) {
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            {description}
+            <b>{userName}</b> {description}
           </Typography>
         </CardContent>
       </Card>

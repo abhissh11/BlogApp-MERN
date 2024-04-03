@@ -37,8 +37,8 @@ function Header() {
               }}
             >
               <Tab onClick={() => navigate("/blogs")} label="All Blogs " />
-
               <Tab onClick={() => navigate("/myblogs")} label="My Blogs " />
+              <Tab onClick={() => navigate("/blogs/add")} label="Add Blog " />
             </Tabs>
           </Box>
         )}
