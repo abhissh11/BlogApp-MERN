@@ -9,9 +9,11 @@ import {
   Typography,
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../store";
 function Header() {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const dispatch = useDispatch();
 
   const [value, setvalue] = useState();
   const navigate = useNavigate();
@@ -63,8 +65,12 @@ function Header() {
             </>
           )}
           {isLoggedIn && (
-            <Link to="">
-              <Button variant="contained" sx={{ margin: 1, borderRadius: 10 }}>
+            <Link to="/login">
+              <Button
+                variant="contained"
+                sx={{ margin: 1, borderRadius: 10 }}
+                onClick={() => dispatch(authActions.logout())}
+              >
                 Log Out
               </Button>
             </Link>

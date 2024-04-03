@@ -3,9 +3,11 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import route from "./routes/user-routes.js";
 import blogRouter from "./routes/blog-routes.js";
+import cors from "cors";
 dotenv.config();
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 app.use("/api/user", route);
