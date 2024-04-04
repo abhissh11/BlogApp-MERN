@@ -29,7 +29,7 @@ function Auth() {
       })
       .catch((err) => console.log(err));
 
-    const data = await res.data;
+    const data = await res?.data;
     return data;
   };
 

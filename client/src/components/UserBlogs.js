@@ -16,14 +16,16 @@ function UserBlogs() {
   useEffect(() => {
     sendRequest().then((data) => setUser(data.user));
   }, []);
-  console.log(user);
+  // console.log(user);
   return (
     <div>
       {user &&
         user.blogs &&
         user.blogs.map((blog) => (
           <BlogCard
+            id={blog._id}
             title={blog.title}
+            isUser={true}
             description={blog.description}
             imgURL={blog.image}
             userName={user.name}

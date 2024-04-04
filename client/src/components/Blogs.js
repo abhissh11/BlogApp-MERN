@@ -16,12 +16,14 @@ function Blogs() {
   useEffect(() => {
     sendRequest().then((data) => setBlogs(data.blogs));
   }, []);
-  console.log(blogs);
+  // console.log(blogs);
   return (
     <div>
       {blogs &&
         blogs.map((blog) => (
           <BlogCard
+            isUser={localStorage.getItem("userId") === blog.user._id}
+            id={blog._id}
             title={blog.title}
             description={blog.description}
             imgURL={blog.image}
